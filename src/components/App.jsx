@@ -35,6 +35,7 @@ export default function App() {
     fetchPhoto(request, page, per_page).then(r => {
       if (r.hits.length === 0) {
         setMessage('Sorry, nothing was found, please try your search again');
+        // return;
       }
       const photos = r.hits.map(({ id, webformatURL, largeImageURL }) => ({
         id,
@@ -43,6 +44,7 @@ export default function App() {
       }));
       setPhotos(prevState => [...prevState, ...photos]);
       setTotalPages(r.totalHits / per_page);
+      // setMessage('');
       setContentLoad(true);
     });
   };
