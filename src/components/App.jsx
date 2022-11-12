@@ -60,6 +60,7 @@ export default function App() {
 
   const loadMore = () => {
     setPage(page + 1);
+    // console.log(page);
   };
 
   const getLargeImg = largeImageURL => {
