@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import { Component } from 'react';
 import { fetchPhoto } from '../api/api';
 import { SearchField } from './Searchbar';
 import { ImageGallery } from './ImageGallery';
@@ -8,7 +7,6 @@ import { Button } from './Button';
 import { Loader } from './Loader';
 import Modal from './Modal';
 import { Message } from './Message';
-// import { toast } from 'react-toastify';
 
 export default function App() {
   const per_page = 12;
