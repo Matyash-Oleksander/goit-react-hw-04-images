@@ -1,24 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import Proptypes from 'prop-types';
 import css from './css/Modal.module.css';
 
 export default function Modal({ largeImageURL, onClose }) {
   useEffect(() => {
-    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keydown', onBackdropClick);
 
     return () => {
-      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keydown', onBackdropClick);
     };
-  });
+  }, [onBackdropClick]);
 
-  function onKeyDown(e) {
-    if (e.code === 'Escape') {
-      onClose();
-    }
-  }
+  // function onKeyDown(e) {
+  //   if (e.code === 'Escape') {
+  //     onClose();
+  //   }
+  // }
 
   function onBackdropClick(e) {
-    if (e.target === e.currentTarget) {
+    if (e.target === e.currentTarget || e.code === 'Escape') {
       onClose();
     }
   }
@@ -36,3 +37,17 @@ Modal.propTypes = {
   onClose: Proptypes.func.isRequired,
   largeImageURL: Proptypes.string.isRequired,
 };
+
+// componentDidMount() {
+//   window.addEventListener('keydown', this.onKeyDown);
+// }
+
+// componentWillUnmount() {
+//   window.removeEventListener('keydown', this.onKeyDown);
+// }
+
+// onKeyDown = e => {
+//   if (e.code === 'Escape') {
+//     this.props.onClose();
+//   }
+// };

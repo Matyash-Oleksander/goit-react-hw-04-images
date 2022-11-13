@@ -5,10 +5,10 @@ const API_KEY = '31086997-7d4570b435210b3153d61cace';
 
 axios.defaults.baseURL = BASE_URL;
 
-export const fetchPhoto = async (search, page, per_page) => {
+export const fetchPhoto = async (search, page) => {
   try {
     const r = await axios.get(
-      `?q=${search}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${per_page}`
+      `?q=${search}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
     );
     return r.data;
   } catch (error) {

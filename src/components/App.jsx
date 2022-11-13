@@ -9,7 +9,6 @@ import Modal from './Modal';
 import { Message } from './Message';
 
 export default function App() {
-  const per_page = 12;
   const [photos, setPhotos] = useState([]);
   const [request, setRequest] = useState('');
   const [page, setPage] = useState(1);
@@ -23,16 +22,16 @@ export default function App() {
 
   useEffect(() => {
     // setMessage('');
-    getData(request, page, per_page);
-  }, [page, per_page, request]);
+    getData(request, page);
+  }, [page, request]);
 
-  const getData = (request, page, per_page) => {
+  const getData = (request, page) => {
     setContentLoad(false);
     if (!request) {
       setContentLoad(true);
       return;
     }
-    fetchPhoto(request, page, per_page).then(r => {
+    fetchPhoto(request, page).then(r => {
       if (r.hits.length === 0) {
         setMessage('Sorry, nothing was found, please try your search again');
         // return;
@@ -43,7 +42,7 @@ export default function App() {
         largeImageURL,
       }));
       setPhotos(prevState => [...prevState, ...photos]);
-      setTotalPages(r.totalHits / per_page);
+      setTotalPages(r.totalHits / 12);
       // setMessage('');
       setContentLoad(true);
     });
